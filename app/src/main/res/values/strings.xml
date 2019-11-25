@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Okta OIDC</string>
+    <string name="use_biometrics">Use biometrics</string>
+    <string name="keyguard_unsafe">Keyguard not secure. Set a PIN or enroll a fingerprint.</string>
+    <string name="error_data_migration">Error in data migration check logs for error</string>
+    <string name="token_refreshed">Token refreshed</string>
+    <string name="signed_out_all">Signed out all</string>
+    <string name="clear_data">clear data</string>
+    <string name="authentication_authorized">Authentication authorized</string>
+    <string name="signed_out_of_okta">Signed out of Okta</string>
+    <string name="canceled">Canceled</string>
+    <string name="error_template">Error: %s</string>
+    <string name="biometric_cancel">Device not authenticated. Exiting…</string>
+    <string name="sign_in">Sign In</string>
+    <string name="social_login">Social Login (Google)</string>
+    <string name="get_profile">Get Profile</string>
+    <string name="sign_out_of_okta">Sign out of Okta</string>
+    <string name="sign_out_all">Sign out of all</string>
+    <string name="refresh_token">Refresh Token</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_credentials">Confirm credentials</string>
+</resources>

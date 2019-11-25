@@ -1,0 +1,53 @@
+apply plugin: "com.android.application"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    defaultConfig {
+        minSdkVersion 23
+        compileSdkVersion 29
+        applicationId "com.okta.oidc.example"
+        versionName "1.0"
+        versionCode 1
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+        // TODO use your own values obtained from https://developer.okta.com
+        buildConfigField "String", "CLIENT_ID", '"12345678901234567890"'
+        buildConfigField "String", "REDIRECT_URI", '"com.okta.dev-1234:/callback"'
+        buildConfigField "String", "END_SESSION_URI", '"com.okta.dev-1234:/logout"'
+        buildConfigField "String[]", "SCOPES", '{"openid", "profile", "offline_access"}'
+        buildConfigField "String", "DISCOVERY_URI", '"https://dev-123456.okta.com"'
+        buildConfigField "String[]", "IDP_SCOPE", "{}"
+        buildConfigField "String", "IDP", '""'
+
+        // Make sure this is consistent with the redirect URI used in REDIRECT_URI
+        manifestPlaceholders = [
+                "appAuthRedirectScheme": "com.okta.dev-1234"
+        ]
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.fragment:fragment:1.1.0'
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+
+    implementation "com.google.android.material:material:1.0.0"
+    implementation 'androidx.biometric:biometric:1.0.0'
+
+    implementation 'com.okta.authn.sdk:okta-authn-sdk-api:1.0.0'
+    implementation('com.okta.authn.sdk:okta-authn-sdk-impl:1.0.0') {
+        exclude group: 'com.okta.sdk', module: 'okta-sdk-httpclient'
+    }
+    implementation 'com.okta.sdk:okta-sdk-okhttp:1.5.4'
+    implementation 'com.okta.android:oidc-androidx:1.0.6'
+
+    implementation "androidx.core:core-ktx:1.1.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
