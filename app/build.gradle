@@ -13,9 +13,9 @@ android {
         multiDexEnabled true
 
         // TODO use your own values obtained from https://developer.okta.com
-        buildConfigField "String", "CLIENT_ID", '"12345678901234567890"'
-        buildConfigField "String", "REDIRECT_URI", '"com.okta.dev-1234:/callback"'
-        buildConfigField "String", "END_SESSION_URI", '"com.okta.dev-1234:/logout"'
+        buildConfigField "String", "CLIENT_ID", '12345678901234567890'
+        buildConfigField "String", "REDIRECT_URI", '"com.okta.dev-123456:/callback"'
+        buildConfigField "String", "END_SESSION_URI", '"com.okta.dev-123456:/logout"'
         buildConfigField "String[]", "SCOPES", '{"openid", "profile", "offline_access"}'
         buildConfigField "String", "DISCOVERY_URI", '"https://dev-123456.okta.com"'
         buildConfigField "String[]", "IDP_SCOPE", "{}"
@@ -23,7 +23,7 @@ android {
 
         // Make sure this is consistent with the redirect URI used in REDIRECT_URI
         manifestPlaceholders = [
-                "appAuthRedirectScheme": "com.okta.dev-1234"
+                "appAuthRedirectScheme": "com.okta.dev-123456"
         ]
     }
 
