@@ -88,8 +88,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupWebAuthCallback(webAuth: WebAuthClient) {
-        val callback: ResultCallback<AuthorizationStatus, AuthorizationException> =
-            object : ResultCallback<AuthorizationStatus, AuthorizationException> {
+        val callback: ResultCallback<AuthorizationStatus, AuthorizationException?> =
+            object : ResultCallback<AuthorizationStatus, AuthorizationException?> {
                 override fun onSuccess(status: AuthorizationStatus) {
                     Log.d(tag, "AUTHORIZED")
                     if (status == AuthorizationStatus.AUTHORIZED) {
@@ -177,14 +177,14 @@ class MainActivity : AppCompatActivity() {
         }
         refreshToken.setOnClickListener {
             showNetworkProgress(true)
-            sessionClient.refreshToken(object : RequestCallback<Tokens, AuthorizationException> {
+            sessionClient.refreshToken(object : RequestCallback<Tokens, AuthorizationException?> {
                 override fun onSuccess(result: Tokens) {
                     tvStatus.text = getString(R.string.token_refreshed)
                     showNetworkProgress(false)
                 }
 
-                override fun onError(error: String, exception: AuthorizationException) {
-                    tvStatus.text = exception.errorDescription
+                override fun onError(error: String?, exception: AuthorizationException?) {
+                    tvStatus.text = exception?.errorDescription
                     showNetworkProgress(false)
                 }
             })
@@ -279,15 +279,15 @@ class MainActivity : AppCompatActivity() {
 
     private fun downloadProfile() {
         showNetworkProgress(true)
-        sessionClient.getUserProfile(object : RequestCallback<UserInfo, AuthorizationException> {
+        sessionClient.getUserProfile(object : RequestCallback<UserInfo, AuthorizationException?> {
             override fun onSuccess(result: UserInfo) {
                 tvStatus.text = result.toString()
                 showNetworkProgress(false)
             }
 
-            override fun onError(error: String, exception: AuthorizationException) {
-                Log.d(tag, error, exception.cause)
-                tvStatus.text = getString(R.string.error_template).format(exception.errorDescription)
+            override fun onError(error: String?, exception: AuthorizationException?) {
+                Log.d(tag, error, exception?.cause)
+                tvStatus.text = getString(R.string.error_template).format(exception?.errorDescription)
                 showNetworkProgress(false)
             }
         })
